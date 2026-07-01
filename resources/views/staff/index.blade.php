@@ -1,0 +1,7 @@
+<x-app-layout>
+    <x-slot name="header"><div class="flex items-center justify-between"><h1 class="text-2xl font-semibold text-[#3b2418]">Personnel / Atelier</h1><a href="{{ route('staff.create') }}" class="rounded-md bg-[#7f1d1d] px-4 py-2 text-sm font-semibold text-white">Nouveau membre</a></div></x-slot>
+    <div class="py-8"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="overflow-hidden rounded-lg border border-[#eadfcc] bg-white shadow-sm"><table class="min-w-full divide-y divide-[#eadfcc] text-sm">
+        <thead class="bg-[#fbf8f3] text-left text-stone-500"><tr><th class="px-4 py-3">Nom</th><th class="px-4 py-3">Rôle</th><th class="px-4 py-3">Téléphone</th><th class="px-4 py-3">Statut</th><th class="px-4 py-3 text-right">Tarif</th><th class="px-4 py-3"></th></tr></thead>
+        <tbody class="divide-y divide-stone-100">@forelse($staff as $member)<tr><td class="px-4 py-3 font-medium text-[#3b2418]">{{ $member->nom }}</td><td class="px-4 py-3">{{ $member->role }}</td><td class="px-4 py-3">{{ $member->telephone ?? '-' }}</td><td class="px-4 py-3">{{ $member->statut }}</td><td class="px-4 py-3 text-right">{{ number_format($member->tarif, 0, ',', ' ') }} FCFA</td><td class="px-4 py-3 text-right"><a href="{{ route('staff.edit', $member) }}" class="text-[#7f1d1d]">Modifier</a></td></tr>@empty<tr><td colspan="6" class="px-4 py-8 text-center text-stone-500">Aucun membre enregistré.</td></tr>@endforelse</tbody>
+    </table></div><div class="mt-4">{{ $staff->links() }}</div></div></div>
+</x-app-layout>
