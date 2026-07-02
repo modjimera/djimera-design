@@ -17,6 +17,14 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'app' => config('app.name'),
+        'env' => app()->environment(),
+    ]);
+});
+
 Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

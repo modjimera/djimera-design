@@ -91,14 +91,22 @@ Copiez la valeur affichée dans Railway.
 
 ## 5. Build et pré-déploiement
 
-Le projet force Node 22 via `package.json` et `.nvmrc`, car Vite 8 exige Node 20.19+ ou 22.12+.
+Le projet force Node 22 via `package.json`, `.nvmrc` et `nixpacks.toml`, car Vite 8 exige Node 20.19+ ou 22.12+.
+
+Le fichier `nixpacks.toml` force aussi l'installation Composer en production :
+
+```bash
+composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+```
 
 Dans le service Laravel Railway :
 
 ### Build Command
 
+Laissez Railway/Nixpacks utiliser `nixpacks.toml`. Si Railway vous demande une commande de build manuelle, utilisez :
+
 ```bash
-npm ci --include=dev && npm run build
+npm run build
 ```
 
 ### Pre-Deploy Command
@@ -113,7 +121,7 @@ chmod +x ./railway/init-app.sh && sh ./railway/init-app.sh
 php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
 ```
 
-Ces commandes sont aussi versionnées dans `railway.json`. Si Railway ne les reprend pas automatiquement, copiez-les dans les champs correspondants du service.
+Ces commandes sont aussi versionnées dans `railway.json` et `nixpacks.toml`. Si Railway ne les reprend pas automatiquement, copiez-les dans les champs correspondants du service.
 
 ## 6. Domaine public HTTPS
 
