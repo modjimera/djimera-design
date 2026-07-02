@@ -34,4 +34,4 @@ RUN composer dump-autoload --optimize --no-scripts \
     && npm run build \
     && chmod +x railway/init-app.sh railway/run-worker.sh railway/run-cron.sh
 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
