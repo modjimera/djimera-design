@@ -1,5 +1,7 @@
 <?php
 
+$cleanUrl = static fn (string $key, string $default): string => preg_replace('/[\r\n\t]/', '', (string) env($key, $default));
+
 return [
 
     /*
@@ -52,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => $cleanUrl('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
