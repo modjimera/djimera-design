@@ -96,7 +96,7 @@ Dans le service Laravel Railway :
 ### Build Command
 
 ```bash
-npm run build
+npm ci --include=dev && npm run build
 ```
 
 ### Pre-Deploy Command
