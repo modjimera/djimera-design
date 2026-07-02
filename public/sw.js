@@ -1,4 +1,4 @@
-const CACHE_NAME = 'djimera-design-manager-v2';
+const CACHE_NAME = 'djimera-design-manager-v3';
 const APP_SHELL = [
     '/offline.html',
     '/manifest.webmanifest',
@@ -33,7 +33,7 @@ self.addEventListener('fetch', event => {
 
     const url = new URL(request.url);
 
-    if (url.pathname.startsWith('/build/')) {
+    if (url.pathname.startsWith('/build/') || url.pathname.startsWith('/css/')) {
         event.respondWith(
             fetch(request)
                 .then(response => {
