@@ -91,6 +91,8 @@ Copiez la valeur affichée dans Railway.
 
 ## 5. Build et pré-déploiement
 
+Le projet force Node 22 via `package.json` et `.nvmrc`, car Vite 8 exige Node 20.19+ ou 22.12+.
+
 Dans le service Laravel Railway :
 
 ### Build Command
