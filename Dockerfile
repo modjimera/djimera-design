@@ -1,5 +1,7 @@
 FROM php:8.3-cli
 
+ENV LOG_CHANNEL=stderr
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
@@ -32,6 +34,6 @@ COPY . .
 
 RUN composer dump-autoload --optimize --no-scripts \
     && npm run build \
-    && chmod +x railway/init-app.sh railway/run-worker.sh railway/run-cron.sh
+    && chmod +x railway/init-app.sh railway/run-worker.sh railway/run-cron.sh docker/app-start.sh
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public public/router.php"]
