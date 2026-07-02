@@ -105,6 +105,14 @@ npm run build
 chmod +x ./railway/init-app.sh && sh ./railway/init-app.sh
 ```
 
+### Start Command
+
+```bash
+php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+```
+
+Ces commandes sont aussi versionnées dans `railway.json`. Si Railway ne les reprend pas automatiquement, copiez-les dans les champs correspondants du service.
+
 ## 6. Domaine public HTTPS
 
 Dans le service Laravel :
