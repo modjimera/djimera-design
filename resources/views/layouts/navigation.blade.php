@@ -13,7 +13,7 @@
     ];
 @endphp
 
-<nav x-data="{ open: false }" class="border-b border-[#6f4b2f] bg-[#3b2418] text-white">
+<nav class="border-b border-[#6f4b2f] bg-[#3b2418] text-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 justify-between">
             <div class="flex min-w-0">
@@ -67,17 +67,17 @@
             </div>
 
             <div class="-me-2 flex items-center 2xl:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center rounded-md p-2 text-[#eadfcc] transition hover:bg-[#4a2c1d] hover:text-white focus:outline-none">
+                <button type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center rounded-md p-2 text-[#eadfcc] transition hover:bg-[#4a2c1d] hover:text-white focus:outline-none">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path data-menu-open-icon class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path data-menu-close-icon class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden 2xl:hidden">
+    <div id="mobile-menu" class="hidden 2xl:hidden">
         <div class="space-y-1 pb-3 pt-2">
             @foreach ($links as $link)
                 <a href="{{ route($link['route']) }}" class="block border-l-4 py-2 pe-4 ps-3 text-base font-medium {{ request()->routeIs(str($link['route'])->before('.')->toString().'*') ? 'border-[#c69c48] bg-[#4a2c1d] text-white' : 'border-transparent text-[#eadfcc] hover:border-[#c69c48]/60 hover:bg-[#4a2c1d] hover:text-white' }}">
