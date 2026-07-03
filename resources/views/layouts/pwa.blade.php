@@ -1,6 +1,7 @@
 <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
 <meta name="application-name" content="Djiméra Design Manager">
 <meta name="theme-color" content="#3b2418">
+<meta name="color-scheme" content="light">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Djiméra">

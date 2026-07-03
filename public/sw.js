@@ -1,4 +1,4 @@
-const CACHE_NAME = 'djimera-design-manager-v3';
+const CACHE_NAME = 'djimera-design-manager-v4';
 const APP_SHELL = [
     '/offline.html',
     '/manifest.webmanifest',
@@ -49,12 +49,7 @@ self.addEventListener('fetch', event => {
     if (request.mode === 'navigate') {
         event.respondWith(
             fetch(request)
-                .then(response => {
-                    const copy = response.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
-                    return response;
-                })
-                .catch(() => caches.match(request).then(cached => cached || caches.match('/offline.html')))
+                .catch(() => caches.match('/offline.html'))
         );
         return;
     }
